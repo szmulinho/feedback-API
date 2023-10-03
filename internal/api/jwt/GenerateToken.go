@@ -2,7 +2,7 @@ package jwt
 
 import (
 	"github.com/golang-jwt/jwt"
-	"github.com/szmulinho/prescription/internal/model"
+	"github.com/szmulinho/feedback/internal/model"
 	"net/http"
 	"time"
 )
