@@ -22,7 +22,8 @@ type Response struct {
 
 type Opinion struct {
 	ID      int64  `json:"id" gorm:"primaryKey;autoIncrement"`
-	Opinion string `json:"opinion"`
+	Rating  int    `json:"rating" gorm:"column:rating"`
+	Comment string `json:"comment"`
 }
 
 var Feedback Opinion

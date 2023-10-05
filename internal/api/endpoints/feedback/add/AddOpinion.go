@@ -42,12 +42,12 @@ func AddOpinion(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(singlePresc)
 		if singlePresc.ID == model.Feedback.ID {
 			w.WriteHeader(http.StatusConflict)
-			json.NewEncoder(w).Encode(errResponse{Error: fmt.Sprintf("Prescription %model.already exist", model.Feedback.ID)})
+			json.NewEncoder(w).Encode(errResponse{Error: fmt.Sprintf("opinion %model.already exist", model.Feedback.ID)})
 			return
 		}
 	}
 
-	fmt.Printf("created new prescription %+v\n", model.Feedback)
+	fmt.Printf("added new opinion %+v\n", model.Feedback)
 	log.Printf("%+v", model.Feedback)
 	w.WriteHeader(http.StatusCreated)
 
