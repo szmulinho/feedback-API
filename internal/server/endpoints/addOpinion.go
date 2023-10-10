@@ -1,10 +1,9 @@
-package add
+package endpoints
 
 import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/szmulinho/feedback/internal/database"
 	"github.com/szmulinho/feedback/internal/model"
 	"log"
 	"net/http"
@@ -14,7 +13,7 @@ type errResponse struct {
 	Error string `json:"error"`
 }
 
-func AddOpinion(w http.ResponseWriter, r *http.Request) {
+func (h *handlers) AddOpinion(w http.ResponseWriter, r *http.Request) {
 
 	var newOpinion model.Opinion
 
@@ -32,7 +31,7 @@ func AddOpinion(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Invalid body")
 	}
 
-	result := database.DB.Create(&newOpinion)
+	result := h.db.Create(&newOpinion)
 	if result.Error != nil {
 		http.Error(w, result.Error.Error(), http.StatusInternalServerError)
 		return
