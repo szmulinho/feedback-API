@@ -11,11 +11,6 @@ services:
   postgres:
     image: ghcr.io/baosystems/postgis:15-3.3
     user: postgres
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
-      timeout: 45s
-      interval: 10s
-      retries: 10
     restart: always
     ports:
       - "5432:5432"
