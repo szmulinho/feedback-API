@@ -2,7 +2,6 @@ package config
 
 import (
 	"fmt"
-	"os"
 )
 
 type StorageConfig struct {
@@ -14,7 +13,7 @@ type StorageConfig struct {
 }
 
 func (c StorageConfig) ConnectionString() string {
-	return fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s",
-		os.Getenv("DB_HOST"), os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"),
-		os.Getenv("DB_NAME"), os.Getenv("DB_PORT"))
+	connectionString := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
+		c.Host, c.User, c.Password, c.Dbname, c.Port)
+	return connectionString
 }

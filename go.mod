@@ -5,7 +5,7 @@ go 1.21.1
 require (
 	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
-	github.com/szmulinho/common v0.0.0-20231012105654-0013eba01d62
+	github.com/szmulinho/common v0.0.0-20231013103923-19b8d6b76e7c
 	gorm.io/gorm v1.25.5
 )
 
