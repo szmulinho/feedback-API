@@ -9,9 +9,6 @@ import (
 	"net/http"
 )
 
-type errResponse struct {
-	Error string `json:"error"`
-}
 
 func (h *handlers) AddOpinion(w http.ResponseWriter, r *http.Request) {
 
@@ -35,15 +32,6 @@ func (h *handlers) AddOpinion(w http.ResponseWriter, r *http.Request) {
 	if result.Error != nil {
 		http.Error(w, result.Error.Error(), http.StatusInternalServerError)
 		return
-	}
-
-	for _, singlePresc := range model.Feed {
-		fmt.Println(singlePresc)
-		if singlePresc.ID == model.Feedback.ID {
-			w.WriteHeader(http.StatusConflict)
-			json.NewEncoder(w).Encode(errResponse{Error: fmt.Sprintf("opinion %model.already exist", model.Feedback.ID)})
-			return
-		}
 	}
 
 	fmt.Printf("added new opinion %+v\n", model.Feedback)

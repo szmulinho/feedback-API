@@ -11,7 +11,7 @@ import (
 	"net/http"
 )
 
-func Run(ctx context.Context, db *gorm.DB) {
+func Run(ctx context.Context , db *gorm.DB) {
 	handler := endpoints.NewHandler(db)
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/add_opinion", handler.AddOpinion).Methods("POST")

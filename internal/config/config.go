@@ -6,9 +6,10 @@ import (
 	"os"
 )
 
-func LoadConfigFromEnv() StorageConfig {
-	if err := godotenv.Load(); err != nil {
-		fmt.Println("Error loading .env file")
+func LoadFromEnv() StorageConfig {
+	err := godotenv.Load(".env")
+	if err != nil {
+		fmt.Printf("Error loading .env file: %v\n")
 	}
 
 	host := os.Getenv("DB_HOST")
@@ -41,7 +42,7 @@ type StorageConfig struct {
 }
 
 func (c StorageConfig) ConnectionString() string {
-	connectionString := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
+	connectionString := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s",
 		c.Host, c.User, c.Password, c.Dbname, c.Port)
 	return connectionString
 }
